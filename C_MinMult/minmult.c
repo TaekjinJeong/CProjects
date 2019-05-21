@@ -30,6 +30,8 @@ int minmult(int n, const int d[], int *P[]) {
 	}
 
 	i = M[0][n - 1];
+	for (i = 0; i < n; i++)
+		free(M[i]);
 	free(M);
 	return i;
 }
@@ -49,7 +51,7 @@ void order(int i, int j, int *P[]) {
 }
 
 int main() {
-	int *d, **P, num, min_mult, i, j;
+	int *d, **P, num, min_mult, i;
 
 	while (1) {
 		//행렬의 개수 입력
@@ -78,6 +80,8 @@ int main() {
 		printf("\nminimum = %d\n\n", min_mult);
 
 		//메모리 해제
+		for (i = 0; i < num; i++)
+			free(P[i]);
 		free(P);
 	}
 }
