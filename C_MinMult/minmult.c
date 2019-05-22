@@ -3,8 +3,9 @@
 
 int minmult(int n, const int d[], int *P[]) {
 	int i, j, k, diagonal, min_k = 0;
-	int **M = (int**)malloc(sizeof(int) * n);
+	int **M;
 	//동적 할당
+	M = (int**)malloc(sizeof(int) * n);
 	for (i = 0; i < n; i++) {
 		M[i] = (int*)malloc(sizeof(int) * n);
 	}
@@ -29,11 +30,7 @@ int minmult(int n, const int d[], int *P[]) {
 		}
 	}
 
-	i = M[0][n - 1];
-	for (i = 0; i < n; i++)
-		free(M[i]);
-	free(M);
-	return i;
+	return M[0][n-1];
 }
 
 void order(int i, int j, int *P[]) {
@@ -62,7 +59,7 @@ int main() {
 
 		//d0 ~ dn 입력
 		printf("d0 ~ d%d를 입력하시오.\n", num);
-		d = (int*)malloc(sizeof(int)*num);
+		d = (int*)malloc(sizeof(int)*(num+1));
 		for (i = 0; i <= num; i++) {
 			printf("d%d : ", i);
 			scanf_s("%d", &d[i]);
